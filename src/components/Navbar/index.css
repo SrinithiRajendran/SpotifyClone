@@ -1,0 +1,64 @@
+.nav-home-logo{
+  padding:10px;
+  transition: transform 0.3s ease;
+}
+nav{
+    align-items: center;
+    padding:10px;
+    width:100%;
+}
+.search-container{
+    display:flex;
+    align-items: center;
+    background: #242424;
+    border-radius:30px;
+    padding:10px;
+    transition: transform 0.3s ease;
+}
+.search-container:hover{
+    background-color: #2d2d2d;
+}
+.search{
+    align-items: center;
+    padding:2px;
+}
+.input-search{
+    background-color: transparent;
+    border:none;
+    outline:none
+}
+.login{
+    background-color: white;
+    padding:10px 25px 10px 25px;
+    border-radius: 20px;
+    color:#242424;
+    transition: transform 0.3s ease;
+}
+.signup{
+     transition: transform 0.3s ease;
+}
+.login:hover , .signup:hover {
+    transform :scale(1.05)
+}
+.nav-home-logo:hover{
+    transform: scale(1.05);
+}
+
+@media screen and (max-width: 900px) {
+    .hide {
+        display: none; 
+    }
+}
+
+@media screen and (min-width: 901px) {
+    .hide {
+        display: flex; 
+    }
+}
+
+
+@media (max-width: 399px) {
+    .hide-on-small {
+        display: none !important; /* Use !important to override other styles */
+    }
+}
