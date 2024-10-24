@@ -71,8 +71,8 @@ import minikki from "./minikki.mp3"
 import minnale from "./minnale.mp3"
 import adangathaasuran from "./adangathaasuran.mp3"
 import goldensparrow from "./goldensparrow.mp3"
-import chillanjirukkiye from "./chillanjirukkiye.mp3"
-import chuttamalle from "./chuttamalle.mp3"
+import Chillanjirukkiye from "./Chillanjirukkiye.mp3"
+import Chuttamalle from "./Chuttamalle.mp3"
 import haanhehaan from "./haanhehaan.mp3"
 import sooseki from "./sooseki.mp3"
 import whatjumka from "./whatjumka.mp3"
@@ -158,7 +158,7 @@ export const albumsData = [
             { id: 1, title: "song2", dateAdded: "2023-01-02", duration: "4:15", file:mankathabgmU1,source : "artists",image : aniruth,desc : "Dive into the World of Sound!"},
             { id: 2, title: "song3", dateAdded: "2023-01-03", duration: "5:00", file:tauba,source : "artists" ,image : aniruth,desc : "Dive into the World of Sound!"},
             { id: 3, title: "song4", dateAdded: "2023-01-04", duration: "3:30", file:Matta,source : "artists",image : aniruth,desc : "Dive into the World of Sound!"},
-            { id: 4, title: "song5", dateAdded: "2023-01-05", duration: "4:20", file: chuttamalle,source : "artists" ,image : aniruth,desc : "Dive into the World of Sound!"},
+            { id: 4, title: "song5", dateAdded: "2023-01-05", duration: "4:20", file: Chuttamalle,source : "artists" ,image : aniruth,desc : "Dive into the World of Sound!"},
            
         ]
          
@@ -186,7 +186,7 @@ export const albumsData = [
         bgColor: "#44337a",
           songs: [
             { id: 0, title: "Adangadha Asuran", dateAdded: "2023-01-01", duration: "3:45", file:adangathaasuran, source : "artists" ,image : aniruth,desc : "Dive into the World of Sound!"},
-            { id: 1, title: "chillanjirukiyae", dateAdded: "2023-01-02", duration: "4:15", file:chillanjirukkiye,source : "artists",image : aniruth,desc : "Dive into the World of Sound!"},
+            { id: 1, title: "chillanjirukiyae", dateAdded: "2023-01-02", duration: "4:15", file:Chillanjirukkiye,source : "artists",image : aniruth,desc : "Dive into the World of Sound!"},
             { id: 2, title: "Matta", dateAdded: "2023-01-03", duration: "5:00", file:Matta,source : "artists" ,image : aniruth,desc : "Dive into the World of Sound!"},
             { id: 3, title: "Golden Sparrow", dateAdded: "2023-01-04", duration: "3:30", file:goldensparrow,source : "artists",image : aniruth,desc : "Dive into the World of Sound!"},
             { id: 4, title: "Makka Mishi", dateAdded: "2023-01-05", duration: "4:20", file: makkamishi,source : "artists" ,image : aniruth,desc : "Dive into the World of Sound!"},
@@ -202,7 +202,7 @@ export const albumsData = [
          songs: [
             { id: 0, title: "Haan He Haan", dateAdded: "2023-01-01", duration: "3:45", file:haanhehaan, source : "artists" ,image : aniruth,desc : "Dive into the World of Sound!"},
             { id: 1, title: "Sooseki", dateAdded: "2023-01-02", duration: "4:15", file:sooseki,source : "artists",image : aniruth,desc : "Dive into the World of Sound!"},
-            { id: 2, title: "Chuttamalle", dateAdded: "2023-01-03", duration: "5:00", file:chuttamalle,source : "artists" ,image : aniruth,desc : "Dive into the World of Sound!"},
+            { id: 2, title: "Chuttamalle", dateAdded: "2023-01-03", duration: "5:00", file:Chuttamalle,source : "artists" ,image : aniruth,desc : "Dive into the World of Sound!"},
             { id: 3, title: "Hey Minnale", dateAdded: "2023-01-04", duration: "3:30", file:heyminnale,source : "artists",image : aniruth,desc : "Dive into the World of Sound!"},
             { id: 4, title: "DISCO", dateAdded: "2023-01-05", duration: "4:20", file: discoAni,source : "artists" ,image : aniruth,desc : "Dive into the World of Sound!"},
            
@@ -484,7 +484,7 @@ export const trendinghits = [
         id:3,
         name: "Chuttamalle",
         image: trending7,
-        file:chuttamalle,
+        file:Chuttamalle,
         desc:"Devara",
         duration:"3:50"
     },
@@ -524,7 +524,7 @@ export const trendinghits = [
         id: 8,
         name: "Chillanjirukkiyae",
         image: trending4,
-        file: chillanjirukkiye,
+        file: Chillanjirukkiye,
         desc: "Lubber Pandhu",
         duration: "2:35"
     },
