@@ -20,24 +20,24 @@ const MusicPlayer = () => {
         audioRef.current.volume = e.target.value;
     };
 
-    // Function to handle the next song when the current song ends
+   
     useEffect(() => {
         const audioElement = audioRef.current;
 
+        const handleEnded = () => {
+            next(); 
+        };
+
         if (audioElement) {
-            // Listen for the 'ended' event
-            audioElement.onended = () => {
-                next(); // Call the next function when the song finishes
-            };
+            audioElement.addEventListener('ended', handleEnded);
         }
 
-        // Clean up the event listener on unmount
         return () => {
             if (audioElement) {
-                audioElement.onended = null;
+                audioElement.removeEventListener('ended', handleEnded);
             }
         };
-    }, [audioRef, next]); // Dependency array ensures this runs when audioRef or next changes
+    }, [audioRef, next]); 
 
     console.log('Current Music Track:', musicTrack);
 
@@ -49,8 +49,8 @@ const MusicPlayer = () => {
                     src={musicTrack.image}
                     alt="song cover"
                     onError={(e) => {
-                        e.target.onerror = null; // Prevents looping
-                        e.target.src = 'path/to/fallback-image.png'; // Path to fallback image
+                        e.target.onerror = null; 
+                        e.target.src = 'path/to/fallback-image.png'; 
                     }}
                 />
                 <div>
