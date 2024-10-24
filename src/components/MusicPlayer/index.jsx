@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { PiShuffleBold } from "react-icons/pi";
 import { FaCirclePlay, FaCirclePause } from "react-icons/fa6";
 import { FaForwardStep, FaBackwardStep } from "react-icons/fa6";
@@ -20,14 +20,27 @@ const MusicPlayer = () => {
         audioRef.current.volume = e.target.value;
     };
 
-    // Function to play songs based on artist ID and song ID
-    const playArtistSong = (artistId, songId) => {
-        playWithSongId(songId, 'artists', artistId);
-    };
+    // Function to handle the next song when the current song ends
+    useEffect(() => {
+        const audioElement = audioRef.current;
+
+        if (audioElement) {
+            // Listen for the 'ended' event
+            audioElement.onended = () => {
+                next(); // Call the next function when the song finishes
+            };
+        }
+
+        // Clean up the event listener on unmount
+        return () => {
+            if (audioElement) {
+                audioElement.onended = null;
+            }
+        };
+    }, [audioRef, next]); // Dependency array ensures this runs when audioRef or next changes
 
     console.log('Current Music Track:', musicTrack);
 
-   
     return (
         <div className='text-white px-4 h-[15%] bg-black flex items-center justify-between sticky w-[100%] mb-0'>
             <div className='hidden lg:flex gap-4 items-center musicwidth'>

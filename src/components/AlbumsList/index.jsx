@@ -38,10 +38,11 @@ const AlbumsList = () => {
                     <h4>{albumData.desc}</h4>
                 </div>
             </div>
-            <div className="grid grid-cols-3 sm:grid-cols-4 mt-10 mb-4 pl-2 text-[#a7a7a7]">
-                <p><b className='mr-4'>#</b>Title</p>
-                <p>Album</p>
-                <p className='hidden sm:block'>Date Added</p>
+            <div className="grid grid-cols-3 sm:grid-cols-4 mt-12 mb-4 pl-2 text-[#a7a7a7]">
+                <div className='flex'><b className='mr-4'>#</b>
+                    <p>Title</p></div>
+                <p className='ml-2 '>Album</p>
+                <p className='hidden sm:block '>Date Added</p>
                 <img className='m-auto w-4' src={assets.clock_icon} alt="duration" />
             </div>
             <hr />
@@ -55,13 +56,13 @@ const AlbumsList = () => {
                             playWithSongId(song.id, "albums", albumData.id); 
                         }}
                     >
-                        <p className='text-white'>
+                       <div className='text-white flex'>
                             <b className='mr-4 text-[#a7a7a7]'>{index + 1}</b>
-                            {song.title}
-                        </p>
-                        <p className='text-[15px]'>{albumData.name}</p>
-                        <p className='text-[15px] hidden sm:block'>{song.dateAdded}</p>
-                        <p className='text-[15px] text-center'>{song.duration}</p>
+                            <p className='truncate'>{song.title}</p>
+                        </div>
+                        <p className='ml-2 text-[12px] sm:text-[15px]'>{albumData.name}</p>
+                        <p className='hidden sm:block text-[12px] sm:text-[15px]'>{song.dateAdded}</p>
+                        <p className='text-center text-[12px] sm:text-[15px]'>{song.duration}</p>
                     </div>
                 ))
             }

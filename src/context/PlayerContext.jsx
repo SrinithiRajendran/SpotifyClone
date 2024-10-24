@@ -20,18 +20,18 @@ const PlayerContextProvider = (props) => {
     const [albumData, setAlbumData] = useState(null);
 
     const play = () => {
-        if (audioRef.current.src) {
-            audioRef.current.play()
-                .then(() => {
-                    setPlayStatus(true);
-                })
-                .catch(error => {
-                    console.error("Error playing audio:", error);
-                });
-        } else {
-            console.error("No audio source set.");
-        }
-    };
+    if (audioRef.current.src) {
+        audioRef.current.play()
+            .then(() => {
+                setPlayStatus(true); // Set play status to true
+            })
+            .catch((error) => {
+                console.error("Error playing audio:", error);
+            });
+    } else {
+        console.error("No audio source set.");
+    }
+};
 
     const pause = () => {
         audioRef.current.pause();
