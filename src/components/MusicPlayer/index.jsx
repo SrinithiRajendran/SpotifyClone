@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { PiShuffleBold } from "react-icons/pi";
 import { FaCirclePlay, FaCirclePause } from "react-icons/fa6";
 import { FaForwardStep, FaBackwardStep } from "react-icons/fa6";
@@ -11,23 +11,38 @@ import { BiSolidVolumeFull } from "react-icons/bi";
 import { CgMiniPlayer } from "react-icons/cg";
 import { AiOutlineFullscreen } from "react-icons/ai";
 import { PlayerContext } from '../../context/PlayerContext';
-import "./index.css"
+import "./index.css";
 
 const MusicPlayer = () => {
-    const { playBar, seekBg, play, pause, playStatus, audioRef, musicTrack, playTime, previous, next, seekSong } = useContext(PlayerContext);
+    const {
+        playBar,
+        seekBg,
+        play,
+        pause,
+        playStatus,
+        audioRef,
+        musicTrack,
+        playTime,
+        previous,
+        next,
+        seekSong,
+    } = useContext(PlayerContext);
 
     const handleVolumeChange = (e) => {
         audioRef.current.volume = e.target.value;
     };
 
-    // Function to play songs based on artist ID and song ID
-    const playArtistSong = (artistId, songId) => {
-        playWithSongId(songId, 'artists', artistId);
-    };
+    // Automatically play the next song when the current one ends
+    useEffect(() => {
+        if (audioRef.current) {
+            audioRef.current.onended = () => {
+                next();  // Call the 'next' function when the song ends
+            };
+        }
+    }, [audioRef, next]);
 
     console.log('Current Music Track:', musicTrack);
 
-   
     return (
         <div className='text-white px-4 h-[15%] bg-black flex items-center justify-between sticky w-[100%] mb-0'>
             <div className='hidden lg:flex gap-4 items-center musicwidth'>
@@ -50,7 +65,11 @@ const MusicPlayer = () => {
                 <div className='flex gap-4 text-2xl cursor-pointer'>
                     <PiShuffleBold className='' />
                     <FaBackwardStep onClick={previous} />
-                    {playStatus ? (<FaCirclePause onClick={pause} />) : (<FaCirclePlay onClick={play} />)}
+                    {playStatus ? (
+                        <FaCirclePause onClick={pause} />
+                    ) : (
+                        <FaCirclePlay onClick={play} />
+                    )}
                     <FaForwardStep onClick={next} />
                     <SlLoop />
                 </div>
@@ -59,7 +78,11 @@ const MusicPlayer = () => {
                         {(playTime.currentTime.minute < 10 ? '0' : '') + playTime.currentTime.minute}:
                         {(playTime.currentTime.second < 10 ? '0' : '') + playTime.currentTime.second}
                     </p>
-                    <div ref={seekBg} onClick={seekSong} className='w-[60vw] max-w-[400px] bg-gray-300 rounded-full cursor-pointer'>
+                    <div
+                        ref={seekBg}
+                        onClick={seekSong}
+                        className='w-[60vw] max-w-[400px] bg-gray-300 rounded-full cursor-pointer'
+                    >
                         <hr ref={playBar} className='bg-green-700 border-none w-10 h-1 rounded-full' />
                     </div>
                     <p>
