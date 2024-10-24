@@ -299,11 +299,10 @@ export const artistsData = [
         desc:"Rhythmic Vibes from a Modern Maestro!",
         songs: [
             { id: 0, title: "Yathey Yathey", dateAdded: "2023-01-01", duration: "3:45", file:GVyathey, source : "artists" ,image : gvprakash ,desc : "G.V.Prakash Hits"},
-            { id: 1, title: "Hey Minnale", dateAdded: "2023-01-02", duration: "4:15", file:heyminnale,source : "artists",image : gvprakash,desc : "G.V.Prakash Hits"},
-            { id: 2, title: "Minuki Minuki", dateAdded: "2023-01-03", duration: "5:00", file:minikki,source : "artists" ,image : gvprakash,desc : "G.V.Prakash Hits"},
-            { id: 3, title: "Pirai Thedum", dateAdded: "2023-01-04", duration: "3:30", file:GVPiraiThedum,source : "artists",image : gvprakash,desc : "G.V.Prakash Hits"},
-            { id: 4, title: "Golden Sparrow", dateAdded: "2023-01-05", duration: "4:20", file: goldensparrow,source : "artists" ,image : gvprakash,desc : "G.V.Prakash Hits"},
-            { id: 5, title: "Para Para", dateAdded: "2023-01-05", duration: "4:20", file:GVparapara,source : "artists",image : gvprakash,desc : "G.V.Prakash Hits"},
+            { id: 1, title: "Minuki Minuki", dateAdded: "2023-01-03", duration: "5:00", file:minikki,source : "artists" ,image : gvprakash,desc : "G.V.Prakash Hits"},
+            { id: 2, title: "Pirai Thedum", dateAdded: "2023-01-04", duration: "3:30", file:GVPiraiThedum,source : "artists",image : gvprakash,desc : "G.V.Prakash Hits"},
+            { id: 3, title: "Golden Sparrow", dateAdded: "2023-01-05", duration: "4:20", file: goldensparrow,source : "artists" ,image : gvprakash,desc : "G.V.Prakash Hits"},
+            { id: 4, title: "Para Para", dateAdded: "2023-01-05", duration: "4:20", file:GVparapara,source : "artists",image : gvprakash,desc : "G.V.Prakash Hits"},
            
         ]
     },
