@@ -65,7 +65,7 @@ import podcast4 from "./podcast4.jpg"
 import podcast5 from "./podcast5.jpg"
 import podcast6 from "./podcast6.jpg"
 import makkamishi from "./makkamishi.mp3"
-import matta from "./matta.mp3"
+import Matta from "./Matta.mp3"
 import manasillaiyo from "./manasillaiyo.mp3"
 import minikki from "./minikki.mp3"
 import minnale from "./minnale.mp3"
@@ -157,7 +157,7 @@ export const albumsData = [
             { id: 0, title: "song1", dateAdded: "2023-01-01", duration: "3:45", file:kathithemeAni, source : "artists" ,image : aniruth,desc : "Dive into the World of Sound!"},
             { id: 1, title: "song2", dateAdded: "2023-01-02", duration: "4:15", file:mankathabgmU1,source : "artists",image : aniruth,desc : "Dive into the World of Sound!"},
             { id: 2, title: "song3", dateAdded: "2023-01-03", duration: "5:00", file:tauba,source : "artists" ,image : aniruth,desc : "Dive into the World of Sound!"},
-            { id: 3, title: "song4", dateAdded: "2023-01-04", duration: "3:30", file:matta,source : "artists",image : aniruth,desc : "Dive into the World of Sound!"},
+            { id: 3, title: "song4", dateAdded: "2023-01-04", duration: "3:30", file:Matta,source : "artists",image : aniruth,desc : "Dive into the World of Sound!"},
             { id: 4, title: "song5", dateAdded: "2023-01-05", duration: "4:20", file: chuttamalle,source : "artists" ,image : aniruth,desc : "Dive into the World of Sound!"},
            
         ]
@@ -172,7 +172,7 @@ export const albumsData = [
            songs: [
             { id: 0, title: "Once Upon a Time", dateAdded: "2023-01-01", duration: "3:45", file:onceuponAni, source : "artists" ,image : aniruth,desc : "Dive into the World of Sound!"},
             { id: 1, title: "Manasilaiyo", dateAdded: "2023-01-02", duration: "4:15", file:manasillaiyo,source : "artists",image : aniruth,desc : "Dive into the World of Sound!"},
-            { id: 2, title: "Matta", dateAdded: "2023-01-03", duration: "5:00", file:matta,source : "artists" ,image : aniruth,desc : "Dive into the World of Sound!"},
+            { id: 2, title: "Matta", dateAdded: "2023-01-03", duration: "5:00", file:Matta,source : "artists" ,image : aniruth,desc : "Dive into the World of Sound!"},
             { id: 3, title: "Hey Minnale", dateAdded: "2023-01-04", duration: "3:30", file:heyminnale,source : "artists",image : aniruth,desc : "Dive into the World of Sound!"},
             { id: 4, title: "Miniki Miniki", dateAdded: "2023-01-05", duration: "4:20", file: minikki,source : "artists" ,image : aniruth,desc : "Dive into the World of Sound!"},
            
@@ -187,7 +187,7 @@ export const albumsData = [
           songs: [
             { id: 0, title: "Adangadha Asuran", dateAdded: "2023-01-01", duration: "3:45", file:adangathaasuran, source : "artists" ,image : aniruth,desc : "Dive into the World of Sound!"},
             { id: 1, title: "chillanjirukiyae", dateAdded: "2023-01-02", duration: "4:15", file:chillanjirukkiye,source : "artists",image : aniruth,desc : "Dive into the World of Sound!"},
-            { id: 2, title: "Matta", dateAdded: "2023-01-03", duration: "5:00", file:matta,source : "artists" ,image : aniruth,desc : "Dive into the World of Sound!"},
+            { id: 2, title: "Matta", dateAdded: "2023-01-03", duration: "5:00", file:Matta,source : "artists" ,image : aniruth,desc : "Dive into the World of Sound!"},
             { id: 3, title: "Golden Sparrow", dateAdded: "2023-01-04", duration: "3:30", file:goldensparrow,source : "artists",image : aniruth,desc : "Dive into the World of Sound!"},
             { id: 4, title: "Makka Mishi", dateAdded: "2023-01-05", duration: "4:20", file: makkamishi,source : "artists" ,image : aniruth,desc : "Dive into the World of Sound!"},
            
@@ -314,7 +314,7 @@ export const artistsData = [
         bgColor: "#234e52",
         desc:"Explore the Sonic Universe of Yuvan!",
         songs: [
-                { id: 0, title: "Matta", dateAdded: "2023-01-01", duration: "3:45", file:matta, source : "artists" ,image : u1111111 ,desc : "Yuvan Shankar Raja Hits"},
+                { id: 0, title: "Matta", dateAdded: "2023-01-01", duration: "3:45", file:Matta, source : "artists" ,image : u1111111 ,desc : "Yuvan Shankar Raja Hits"},
                 { id: 1, title: "Spark", dateAdded: "2023-01-02", duration: "4:15", file:sparkU1,source : "artists",image : u1111111,desc : "Yuvan Shankar Raja Hits"},
                 { id: 2, title: "Orunalikul", dateAdded: "2023-01-03", duration: "5:00", file:orunalikulU1,source : "artists" ,image : u1111111,desc : "Yuvan Shankar Raja Hits"},
                 { id: 3, title: "Suthudhey suthudhey", dateAdded: "2023-01-04", duration: "3:30", file:suthudheyU1,source : "artists",image : u1111111,desc : "Yuvan Shankar Raja Hits"},
@@ -354,7 +354,7 @@ export const throwbackData = [
            songs: [
             { id: 0, title: "Nira Nira", dateAdded: "2023-01-01", duration: "3:45", file:suthudheyU1, source : "artists" ,image : aniruth,desc : "Dive into the World of Sound!"},
             { id: 1, title: "DISCO", dateAdded: "2023-01-02", duration: "4:15", file:discoAni,source : "artists",image : aniruth,desc : "Dive into the World of Sound!"},
-            { id: 2, title: "Matta", dateAdded: "2023-01-03", duration: "5:00", file:matta,source : "artists" ,image : aniruth,desc : "Dive into the World of Sound!"},
+            { id: 2, title: "Matta", dateAdded: "2023-01-03", duration: "5:00", file:Matta,source : "artists" ,image : aniruth,desc : "Dive into the World of Sound!"},
             { id: 3, title: "Hey Minnale", dateAdded: "2023-01-04", duration: "3:30", file:heyminnale,source : "artists",image : aniruth,desc : "Dive into the World of Sound!"},
             { id: 4, title: "Miniki Miniki", dateAdded: "2023-01-05", duration: "4:20", file: minikki,source : "artists" ,image : aniruth,desc : "Dive into the World of Sound!"},
            
@@ -476,7 +476,7 @@ export const trendinghits = [
         id:2,
         name: "Matta",
         image: trending2,
-        file:matta,
+        file:Matta,
         desc:"GOAT",
         duration:"2:32"
     },
