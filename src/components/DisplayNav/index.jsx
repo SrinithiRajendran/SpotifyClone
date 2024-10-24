@@ -6,11 +6,11 @@ import "./index.css";
 
 const DisplayNav = ({ onTabChange }) => {
     const navigate = useNavigate();
-    const [activeTab, setActiveTab] = useState('All'); // State to track the active tab
+    const [activeTab, setActiveTab] = useState('All'); 
 
     const handleTabClick = (tab) => {
-        setActiveTab(tab); // Update the active tab state
-        onTabChange(tab); // Notify the parent component
+        setActiveTab(tab); 
+        onTabChange(tab); 
     };
 
     return (

@@ -5,12 +5,12 @@ import AlbumItem from '../AlbumItem';
 import Podcasts from '../Podcasts';
 import ArtistsList from '../ArtistsList';
 import TrendingHits from '../TrendingHits';
-import ThrowbackItem from '../ThrowbackItem'; // Ensure you're importing ThrowbackItem
+import ThrowbackItem from '../ThrowbackItem'; 
 
 const DisplayHome = () => {
-  const [activeTab, setActiveTab] = useState('All'); // State to track the active tab
+  const [activeTab, setActiveTab] = useState('All'); 
 
-  // Function to handle tab changes from DisplayNav
+  
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };

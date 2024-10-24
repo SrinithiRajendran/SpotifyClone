@@ -15,8 +15,8 @@ const PlayerContextProvider = (props) => {
     });
     const [trackList, setTrackList] = useState([]);
     const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
-    const [artistAlbum, setArtistAlbum] = useState(null); // Add artistAlbum state
-    const [throwbackAlbum, setThrowbackAlbum] = useState(null); // Add throwbackAlbum state
+    const [artistAlbum, setArtistAlbum] = useState(null); 
+    const [throwbackAlbum, setThrowbackAlbum] = useState(null); 
     const [albumData, setAlbumData] = useState(null);
 
     const play = () => {
@@ -39,143 +39,140 @@ const PlayerContextProvider = (props) => {
     };
 
     const playWithSongId = async (id, source, artistId) => {
-    try {
-        console.log("playWithSongId called with:", { id, source, artistId });
+        try {
+            console.log("playWithSongId called with:", { id, source, artistId });
 
-        let track;
-        switch (source) {
-            case 'artists':
-                const artist = artistsData.find(artist => artist.id === artistId);
-                if (artist) {
-                    track = artist.songs.find(song => song.id === id);
-                    if (track) {
-                        setTrackList(artist.songs);
-                        setCurrentTrackIndex(artist.songs.findIndex(song => song.id === id)); // Set current track index
-                        setArtistAlbum(artist); // Set the artist album
+            let track;
+            switch (source) {
+                case 'artists':
+                    const artist = artistsData.find(artist => artist.id === artistId);
+                    if (artist) {
+                        track = artist.songs.find(song => song.id === id);
+                        if (track) {
+                            setTrackList(artist.songs);
+                            setArtistAlbum(artist); 
+                        } else {
+                            console.error("Track not found for artist ID:", artistId, "and song ID:", id);
+                            return;
+                        }
                     } else {
-                        console.error("Track not found for artist ID:", artistId, "and song ID:", id);
+                        console.error(`Artist not found for ID: ${artistId}`);
                         return;
                     }
-                } else {
-                    console.error(`Artist not found for ID: ${artistId}`);
+                    break;
+
+                case 'albums':
+                    const album = albumsData.find(album => album.id === artistId);
+                    if (!album) {
+                        console.error(`Album not found for ID: ${artistId}`);
+                        return;
+                    }
+                    track = album.songs.find(song => song.id === id);
+
+                    if (track) {
+                        setTrackList(album.songs);
+                        setArtistAlbum(album); 
+                        setAlbumData(album);
+                    } else {
+                        console.error("Track not found for album artist ID:", artistId, "and song ID:", id);
+                        return; 
+                    }
+                    break;
+
+                case 'throwback':
+                    const throwbackArtist = throwbackData.find(item => item.id === artistId);
+                    if (!throwbackArtist) {
+                        console.error(`Throwback not found for ID: ${artistId}`);
+                        return; 
+                    }
+
+                    track = throwbackArtist.songs.find(song => song.id === id);
+                    if (track) {
+                        setTrackList(throwbackArtist.songs);
+                        setArtistAlbum(throwbackArtist); 
+                    } else {
+                        console.error("Track not found for throwback artist ID:", artistId, "and song ID:", id);
+                        return; 
+                    }
+                    break;
+
+                case 'trending':
+                    track = trendinghits.find(song => song.id === id);
+                    if (track) {
+                        setTrackList(trendinghits); 
+                        setArtistAlbum(null); 
+                        setCurrentTrackIndex(trendinghits.findIndex(song => song.id === id)); 
+                    } else {
+                        console.error("Track not found for trending ID:", id);
+                        return;
+                    }
+                    break;
+
+                case 'podcasts':
+                    track = podcastData.find(song => song.id === id);
+                    if (track) {
+                        setTrackList(podcastData); 
+                        setArtistAlbum(null); 
+                        setCurrentTrackIndex(podcastData.findIndex(song => song.id === id)); 
+                    } else {
+                        console.error("Track not found for podcast ID:", id);
+                        return;
+                    }
+                    break;
+
+                default:
+                    console.error(`Unknown source: ${source}`);
+                    return;
+            }
+
+            if (track) {
+                const audioFile = track.file;
+                console.log(`Playing song:`, track);
+
+                if (!audioFile) {
+                    console.error("Invalid audio file for track:", track.title);
                     return;
                 }
-                break;
 
-            case 'albums':
-                const album = albumsData.find(album => album.id === artistId);
-                if (!album) {
-                    console.error(`Album not found for ID: ${artistId}`);
-                    return;
-                }
-                track = album.songs.find(song => song.id === id);
+                audioRef.current.src = audioFile;
+                setMusicTrack({
+                    name: track.title,
+                    desc: track.desc,
+                    image: track.image,
+                });
 
-                if (track) {
-                    setTrackList(album.songs);
-                    setCurrentTrackIndex(album.songs.findIndex(song => song.id === id)); // Set current track index
-                    setArtistAlbum(album); // Set the album
-                    setAlbumData(album); // Set albumData here
-                } else {
-                    console.error("Track not found for album artist ID:", artistId, "and song ID:", id);
-                    return; // Return if the track is not found
-                }
-                break;
-
-            case 'throwback':
-                const throwbackArtist = throwbackData.find(item => item.id === artistId);
-                if (!throwbackArtist) {
-                    console.error(`Throwback not found for ID: ${artistId}`);
-                    return; // Return if the throwback artist is not found
+                if (!audioRef.current.paused) {
+                    audioRef.current.pause();
+                    setPlayStatus(false);
                 }
 
-                track = throwbackArtist.songs.find(song => song.id === id);
-                if (track) {
-                    setTrackList(throwbackArtist.songs);
-                    setCurrentTrackIndex(throwbackArtist.songs.findIndex(song => song.id === id)); // Set current track index
-                    setArtistAlbum(throwbackArtist); // Set the throwback artist
-                } else {
-                    console.error("Track not found for throwback artist ID:", artistId, "and song ID:", id);
-                    return; // Return if the track is not found
-                }
-                break;
+                await audioRef.current.load();
 
-            case 'trending':
-                track = trendinghits.find(song => song.id === id);
-                if (track) {
-                    setTrackList(trendinghits); // Use the full trending hits list
-                    setCurrentTrackIndex(trendinghits.findIndex(song => song.id === id)); // Set the current track index
-                    setArtistAlbum(null); // Clear artistAlbum for trending
-                } else {
-                    console.error("Track not found for trending ID:", id);
-                    return;
-                }
-                break;
+                const handleCanPlayThrough = async () => {
+                    try {
+                        audioRef.current.removeEventListener('canplaythrough', handleCanPlayThrough);
+                        await audioRef.current.play();
+                        setPlayStatus(true);
+                        setCurrentTrackIndex(trackList.findIndex(song => song.id === id));
+                    } catch (error) {
+                        console.error("Error playing audio:", error);
+                    }
+                };
 
-            case 'podcasts':
-                track = podcastData.find(song => song.id === id);
-                if (track) {
-                    setTrackList(podcastData); // Use the full podcast data list
-                    setCurrentTrackIndex(podcastData.findIndex(song => song.id === id)); // Set the current track index
-                    setArtistAlbum(null); // Clear artistAlbum for podcasts
-                } else {
-                    console.error("Track not found for podcast ID:", id);
-                    return;
-                }
-                break;
+                audioRef.current.addEventListener('canplaythrough', handleCanPlayThrough);
 
-            default:
-                console.error(`Unknown source: ${source}`);
-                return;
+                if (audioRef.current.readyState >= 2) {
+                    handleCanPlayThrough();
+                }
+
+            } else {
+                console.error("Track not found for ID:", id);
+            }
+
+        } catch (error) {
+            console.error("Error playing audio:", error);
         }
-
-        if (track) {
-            const audioFile = track.file;
-            console.log(`Playing song:`, track);
-
-            if (!audioFile) {
-                console.error("Invalid audio file for track:", track.title);
-                return;
-            }
-
-            audioRef.current.src = audioFile;
-            setMusicTrack({
-                name: track.title,
-                desc: track.desc,
-                image: track.image,
-            });
-
-            if (!audioRef.current.paused) {
-                audioRef.current.pause();
-                setPlayStatus(false);
-            }
-
-            await audioRef.current.load();
-
-            const handleCanPlayThrough = async () => {
-                try {
-                    audioRef.current.removeEventListener('canplaythrough', handleCanPlayThrough);
-                    await audioRef.current.play();
-                    setPlayStatus(true);
-                } catch (error) {
-                    console.error("Error playing audio:", error);
-                }
-            };
-
-            audioRef.current.addEventListener('canplaythrough', handleCanPlayThrough);
-
-            if (audioRef.current.readyState >= 2) {
-                handleCanPlayThrough();
-            }
-
-        } else {
-            console.error("Track not found for ID:", id);
-        }
-
-    } catch (error) {
-        console.error("Error playing audio:", error);
-    }
-};
-
+    };
 
     const next = () => {
         if (trackList.length > 0) {

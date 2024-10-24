@@ -1,29 +1,28 @@
 import React, { useContext, useEffect } from 'react';
 import DisplayNav from '../DisplayNav';
 import { useParams } from 'react-router-dom';
-import { throwbackData, assets } from '../../assets/assets'; // Ensure correct path to assets
+import { throwbackData, assets } from '../../assets/assets'; 
 import { PlayerContext } from '../../context/PlayerContext';
 
 const Throwback = () => {
-    const { id } = useParams();  // Use id from the route params
-    const albumId = parseInt(id, 10);  // Ensure id is a number
+    const { id } = useParams();  
+    const albumId = parseInt(id, 10); 
     
-    // Find the throwback album based on the albumId
+   
     const throwbackAlbum = throwbackData.find(album => album.id === albumId);
     const { playWithSongId } = useContext(PlayerContext);
 
-    // Log the selected album only when `throwbackAlbum` changes
+   
     useEffect(() => {
         if (throwbackAlbum) {
             console.log('Selected Album:', throwbackAlbum.name);
-            // Log each song file once
             throwbackAlbum.songs.forEach(song => {
-                console.log('Song File:', song.file);  // Logs the file of each song
+                console.log('Song File:', song.file); 
             });
         }
-    }, [throwbackAlbum]); // This ensures it runs only when `throwbackAlbum` is updated.
+    }, [throwbackAlbum]); 
 
-    // Check if the album data is found
+   
     if (!throwbackAlbum) {
         return <p>Album not found</p>;
     }
@@ -52,7 +51,7 @@ const Throwback = () => {
                         key={song.id} 
                         className='grid grid-cols-3 sm:grid-cols-4 gap-2 p-2 items-center text-[#a7a7a7] hover:bg-[#ffffff2b] cursor-pointer pb-5'
                         onClick={() => {
-                            console.log("Throwback Album ID:", throwbackAlbum.id); // Log the album ID
+                            console.log("Throwback Album ID:", throwbackAlbum.id); 
                             playWithSongId(song.id, "throwback", throwbackAlbum.id);
                         }}
                     >

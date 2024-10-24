@@ -59,6 +59,6 @@ nav{
 
 @media (max-width: 399px) {
     .hide-on-small {
-        display: none !important; /* Use !important to override other styles */
+        display: none !important; 
     }
 }

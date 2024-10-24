@@ -1,29 +1,28 @@
 import React, { useContext, useEffect } from 'react';
 import DisplayNav from '../DisplayNav';
 import { useParams } from 'react-router-dom';
-import { albumsData, assets } from '../../assets/assets'; // Adjust the path as necessary
+import { albumsData, assets } from '../../assets/assets'; 
 import { PlayerContext } from '../../context/PlayerContext';
 
 const AlbumsList = () => {
-    const { id } = useParams();  // Use id from the route params
-    const albumId = parseInt(id, 10);  // Ensure id is a number
+    const { id } = useParams();  
+    const albumId = parseInt(id, 10);  
     
-    // Find the album based on the albumId
+    
     const albumData = albumsData.find(album => album.id === albumId);
     const { playWithSongId } = useContext(PlayerContext);
 
-    // Log the selected album only when `albumData` changes
+   
     useEffect(() => {
         if (albumData) {
-            console.log('Selected Album:', albumData.name);
-            // Log each song file once
+            console.log('selected Album:', albumData.name);
             albumData.songs.forEach(song => {
-                console.log('Song File:', song.file);  // Logs the file of each song
+                console.log('Song File:', song.file);  
             });
         }
-    }, [albumData]); // This ensures it runs only when `albumData` is updated.
+    }, [albumData]); 
 
-    // Check if the album data is found
+   
     if (!albumData) {
         return <p>Album not found</p>;
     }
@@ -52,8 +51,8 @@ const AlbumsList = () => {
                         key={song.id} 
                         className='grid grid-cols-3 sm:grid-cols-4 gap-2 p-2 items-center text-[#a7a7a7] hover:bg-[#ffffff2b] cursor-pointer pb-5'
                         onClick={() => {
-                            console.log("Album ID:", albumData.id); // Log the album ID
-                            playWithSongId(song.id, "albums", albumData.id); // Pass the song ID, source, and albumId
+                            console.log("Album ID:", albumData.id); 
+                            playWithSongId(song.id, "albums", albumData.id); 
                         }}
                     >
                         <p className='text-white'>
