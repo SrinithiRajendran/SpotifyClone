@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { useRef } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import DisplayHome from "../DisplayHome";
@@ -9,27 +9,29 @@ import ExplorePremium from "../ExplorePremium";
 import Throwback from "../Throwback";
 import Artists from "../Artists";
 import ListenShows from "../ListenShows";
+import { PlayerContext } from "../../context/PlayerContext";
 
 const DisplayMusic = () => {
   const displayRef = useRef();
   const location = useLocation();
+  const { playStatus } = useContext(PlayerContext);
   const isAlbum =
     location.pathname.includes("album") ||
     location.pathname.includes("throwback");
   const albumId = isAlbum ? location.pathname.slice(-1) : "";
-  const bgColor = albumsData[Number(albumId)].bgColor;
+  const bgColor = albumsData[Number(albumId)]?.bgColor || "#121212";
 
   useEffect(() => {
     if (isAlbum) {
-      displayRef.current.style.background = `linear-gradient(${bgColor},#121212)`;
+      displayRef.current.style.background = `linear-gradient(${bgColor}, #121212)`;
     } else {
       displayRef.current.style.background = `#121212`;
     }
-  });
+  }, [playStatus, isAlbum, bgColor]);
 
   return (
     <div
-      className="text-white overflow-auto w-[100%] m-2 px-6 pt-4 lg:w-[75%] lg:ml-0 rounded bg-[#121212]"
+      className="text-white overflow-auto w-[100%] m-2 px-2 md:px-6 pt-4 lg:w-[75%] lg:ml-0 rounded bg-[#121212]"
       ref={displayRef}
     >
       <Routes>

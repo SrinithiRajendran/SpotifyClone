@@ -164,6 +164,8 @@ const PlayerContextProvider = (props) => {
           return;
         }
 
+        setTrackList(trackList);
+
         audioRef.current.src = audioFile;
         setMusicTrack({
           name: track.title,
