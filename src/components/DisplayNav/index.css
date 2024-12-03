@@ -1,27 +1,25 @@
-.all-music-podcasts{
-    transition: 0.3 ease;
+.all-music-podcasts {
+  transition: 0.3 ease;
 }
 
-.all-music-podcasts:hover{
-    background: rgb(6, 5, 5);
+.all-music-podcasts:hover {
+  background: rgb(6, 5, 5);
 }
-
-
 
 @media screen and (max-width: 900px) {
-    .hide-nav {
-        display: flex; 
-    }
+  .hide-nav {
+    display: flex;
+  }
 }
 
 @media screen and (min-width: 901px) {
-    .hide-nav {
-        display: none; 
-    }
+  .hide-nav {
+    display: none;
+  }
 }
 
 @media (max-width: 399px) {
-    .hide-on-small {
-        display: none !important; 
-    }
+  .hide-on-small {
+    display: none !important;
+  }
 }
