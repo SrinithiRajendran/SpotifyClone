@@ -84,6 +84,7 @@ const PlayerContextProvider = (props) => {
           if (track) {
             setTrackList(album.songs);
             setArtistAlbum(album);
+            setAlbumData(album);
           } else {
             console.error(
               "Track not found for album artist ID:",
@@ -163,8 +164,6 @@ const PlayerContextProvider = (props) => {
           console.error("Invalid audio file for track:", track.title);
           return;
         }
-
-        setTrackList(trackList);
 
         audioRef.current.src = audioFile;
         setMusicTrack({
