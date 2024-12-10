@@ -1,24 +1,25 @@
-import React, { useContext } from 'react'
-import Sidebar from './components/Sidebar/index.jsx'
-import Navbar from './components/Navbar/index.jsx'
-import MusicPlayer from './components/MusicPlayer/index.jsx'
-import DisplayMusic from './components/DisplayMusic/index.jsx'
-import { PlayerContext } from './context/PlayerContext.jsx'
+// eslint-disable-next-line no-unused-vars
+import React, { useContext } from "react";
+import Sidebar from "./components/Sidebar/index.jsx";
+import Navbar from "./components/Navbar/index.jsx";
+import MusicPlayer from "./components/MusicPlayer/index.jsx";
+import DisplayMusic from "./components/DisplayMusic/index.jsx";
+import { PlayerContext } from "./context/PlayerContext.jsx";
 
 const App = () => {
-  const { audioRef,musicTrack } = useContext(PlayerContext)
-  
+  const { audioRef, musicTrack } = useContext(PlayerContext);
+
   return (
-    <div className='h-screen bg-black'>
+    <div className="h-screen bg-black">
       <Navbar />
-      <div className='h-[80%] flex '>
-        <Sidebar/>
-        <DisplayMusic/>
+      <div className="h-[72%] flex ">
+        <Sidebar />
+        <DisplayMusic />
       </div>
       <MusicPlayer />
-      <audio preload="auto"  ref={audioRef} src={musicTrack.file}></audio>
+      <audio preload="auto" ref={audioRef} src={musicTrack.file}></audio>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

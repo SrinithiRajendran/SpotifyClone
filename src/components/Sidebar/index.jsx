@@ -21,11 +21,15 @@ const Sidebar = () => {
           </div>
         </div>
         <div className="p-4 bg-[#242424] m-2 rounded font-semibold flex flex-col items-start justify-start gap-1 pl-4">
-          <h1 className="font-bold">Create your first playlist</h1>
-          <p className="font-light">It&apos;s easy, we&apos;ll help you</p>
-          <button className="px-4 py-1.5 bg-white text-[15px] text-black rounded-full mt-4">
-            Create playlist
-          </button>
+          <h1 className="font-bold">
+            Every &apos;like&apos; is a memory, enjoy them all
+          </h1>
+          <p className="font-light">Cherish your favorites</p>
+          <Link to="/fav">
+            <button className="px-4 py-1.5 bg-white text-[15px] text-black rounded-full mt-4">
+              Fav Tunes
+            </button>
+          </Link>
         </div>
         <div className="p-4 bg-[#242424] m-2 rounded font-semibold flex flex-col items-start justify-start gap-1 pl-4">
           <h1 className="font-bold">Explore Fresh Voices in Podcasting!</h1>

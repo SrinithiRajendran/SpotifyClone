@@ -1,11 +1,13 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
 import { BsSpotify } from "react-icons/bs";
+import DisplayNav from "../DisplayNav";
 
 const ExplorePremium = () => {
   return (
     <>
-      <div className="text-white p-8 rounded-lg bg-gradient-to-r from-pink-900 to-blue-900">
+      <DisplayNav />
+      <div className="text-white p-8 mt-10 rounded-lg bg-gradient-to-r from-pink-900 to-blue-900">
         <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
           Listen without limits. Try 2 months of Premium for ₹119.
         </h1>

@@ -8,6 +8,7 @@ import { AiOutlinePlaySquare } from "react-icons/ai";
 import { LuMic2 } from "react-icons/lu";
 import { HiQueueList } from "react-icons/hi2";
 import { TbDevices2 } from "react-icons/tb";
+import { FaSpotify } from "react-icons/fa";
 import { BiSolidVolumeFull } from "react-icons/bi";
 import { CgMiniPlayer } from "react-icons/cg";
 import { AiOutlineFullscreen } from "react-icons/ai";
@@ -27,23 +28,33 @@ const MusicPlayer = () => {
     previous,
     next,
     seekSong,
+    toggleLoop,
+    isLooping,
+    favouriteTrack,
+    playWithFavourites, // Assuming playWithFavourites is part of context
   } = useContext(PlayerContext);
 
   const handleVolumeChange = (e) => {
     audioRef.current.volume = e.target.value;
   };
 
+  // Logic to choose which track to play
+  //const activeTrack = musicTrack || favouriteTrack; // Default to musicTrack, if not set, fallback to favouriteTrack
+
+  /*useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.play();
+    }
+  }, [audioRef, activeTrack]); */ // Re-run whenever activeTrack changes
+
   useEffect(() => {
     const audioElement = audioRef.current;
-
     const handleEnded = () => {
-      next();
+      next(); // Move to the next song when the current song ends
     };
-
     if (audioElement) {
       audioElement.addEventListener("ended", handleEnded);
     }
-
     return () => {
       if (audioElement) {
         audioElement.removeEventListener("ended", handleEnded);
@@ -51,25 +62,42 @@ const MusicPlayer = () => {
     };
   }, [audioRef, next]);
 
+  // Handle the favourite track selection
+  const handleFavouriteTrackClick = () => {
+    if (favouriteTrack) {
+      playWithFavourites(favouriteTrack.favouriteId); // Play the favourite track
+    }
+  };
+
   console.log("Current Music Track:", musicTrack);
+  console.log("Favourite Track:", favouriteTrack);
+  const currentTrack = musicTrack || favouriteTrack;
 
   return (
     <div className="text-white px-4 h-[15%] bg-black flex items-center justify-between sticky w-[100%] mb-0">
-      <div className="hidden lg:flex gap-4 items-center musicwidth">
-        <img
-          className="w-12"
-          src={musicTrack.image}
-          alt="song cover"
-          onError={(e) => {
-            e.target.onerror = null;
-            e.target.src = "path/to/fallback-image.png";
-          }}
-        />
-        <div>
-          <p>{musicTrack.name}</p>
-          <p>{musicTrack.desc ? musicTrack.desc.slice(0, 30) : ""}</p>
+      {currentTrack && (
+        <div
+          className="hidden lg:flex gap-4 items-center musicwidth"
+          onClick={
+            currentTrack === favouriteTrack ? handleFavouriteTrackClick : null
+          }
+        >
+          <img
+            className="w-12"
+            src={currentTrack?.image}
+            alt={currentTrack?.name}
+          />
+          {!currentTrack?.image && (
+            <div className="flex items-center">
+              <FaSpotify className="mr-2" /> SPOTIFY
+            </div>
+          )}
+          <div>
+            <p>{currentTrack.name}</p>
+            <p>{currentTrack.desc ? currentTrack.desc.slice(0, 30) : ""}</p>
+          </div>
         </div>
-      </div>
+      )}
 
       <div className="flex flex-col items-center m-auto gap-1">
         <div className="flex gap-4 text-2xl cursor-pointer">
@@ -81,8 +109,12 @@ const MusicPlayer = () => {
             <FaCirclePlay onClick={play} />
           )}
           <FaForwardStep onClick={next} />
-          <SlLoop />
+          <SlLoop
+            onClick={toggleLoop}
+            style={{ color: isLooping ? "green" : "white" }}
+          />
         </div>
+
         <div className="flex items-center gap-5">
           <p>
             {(playTime.currentTime.minute < 10 ? "0" : "") +
@@ -91,6 +123,7 @@ const MusicPlayer = () => {
             {(playTime.currentTime.second < 10 ? "0" : "") +
               playTime.currentTime.second}
           </p>
+
           <div
             ref={seekBg}
             onClick={seekSong}
@@ -101,6 +134,7 @@ const MusicPlayer = () => {
               className="bg-green-700 border-none w-10 h-1 rounded-full"
             />
           </div>
+
           <p>
             {(playTime.totalTime.minute < 10 ? "0" : "") +
               playTime.totalTime.minute}

@@ -3,6 +3,9 @@ import React, { useState } from "react";
 import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 import { GrInstallOption } from "react-icons/gr";
 import { useNavigate, Link } from "react-router-dom";
+import { BsStack } from "react-icons/bs";
+import { FaArrowRight, FaPlus, FaBars } from "react-icons/fa6";
+import { IoClose } from "react-icons/io5";
 import "./index.css";
 
 // eslint-disable-next-line react/prop-types
@@ -15,6 +18,12 @@ const DisplayNav = ({ onTabChange }) => {
     onTabChange(tab);
   };
 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Function to toggle the menu state
+  const toggleMenu = () => {
+    setIsMenuOpen((prevState) => !prevState);
+  };
   return (
     <>
       <div className="flex justify-between items-center w-full font-semibold">
@@ -46,36 +55,87 @@ const DisplayNav = ({ onTabChange }) => {
           </p>
         </div>
       </div>
+      <div className="flex items-center justify-between mt-4 mb-8">
+        <div className="flex items-center gap-2 sm:gap-3 md:gap-4 mt-4 cursor-pointer">
+          <p
+            className={`px-3 sm:px-4 py-1 text-[12px] sm:text-[13px] md:text-[15px] rounded-2xl ${
+              activeTab === "All"
+                ? "bg-white text-black"
+                : "bg-black text-white"
+            }`}
+            onClick={() => handleTabClick("All")}
+          >
+            All
+          </p>
+          <p
+            className={`px-3 sm:px-4 py-1 text-[12px] sm:text-[13px] md:text-[15px] rounded-2xl ${
+              activeTab === "Music"
+                ? "bg-white text-black"
+                : "bg-black text-white"
+            }`}
+            onClick={() => handleTabClick("Music")}
+          >
+            Music
+          </p>
+          <p
+            className={`px-3 sm:px-4 py-1 text-[12px] sm:text-[13px] md:text-[15px] rounded-2xl ${
+              activeTab === "Podcasts"
+                ? "bg-white text-black"
+                : "bg-black text-white"
+            }`}
+            onClick={() => handleTabClick("Podcasts")}
+          >
+            Podcasts
+          </p>
+        </div>
 
-      <div className="flex items-center gap-2 sm:gap-3 md:gap-4 mt-4 cursor-pointer">
-        <p
-          className={`px-3 sm:px-4 py-1 text-[12px] sm:text-[13px] md:text-[15px] rounded-2xl ${
-            activeTab === "All" ? "bg-white text-black" : "bg-black text-white"
-          }`}
-          onClick={() => handleTabClick("All")}
-        >
-          All
-        </p>
-        <p
-          className={`px-3 sm:px-4 py-1 text-[12px] sm:text-[13px] md:text-[15px] rounded-2xl ${
-            activeTab === "Music"
-              ? "bg-white text-black"
-              : "bg-black text-white"
-          }`}
-          onClick={() => handleTabClick("Music")}
-        >
-          Music
-        </p>
-        <p
-          className={`px-3 sm:px-4 py-1 text-[12px] sm:text-[13px] md:text-[15px] rounded-2xl ${
-            activeTab === "Podcasts"
-              ? "bg-white text-black"
-              : "bg-black text-white"
-          }`}
-          onClick={() => handleTabClick("Podcasts")}
-        >
-          Podcasts
-        </p>
+        <button onClick={toggleMenu}>
+          {isMenuOpen ? (
+            <IoClose className=" flex lg:hidden text-3xl md:text-4xl" />
+          ) : (
+            <FaBars className=" flex lg:hidden text-2xl md:text-3xl" />
+          )}
+        </button>
+      </div>
+
+      <div
+        className={`w-[100%] p-2 flex-col gap-2 text-white flex lg:hidden ${
+          isMenuOpen ? "block" : "hidden"
+        } lg:flex`} // The content is visible when isMenuOpen is true
+      >
+        <div className="bg-[#121212] h-[85%] rounded">
+          <div className="p-4 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <BsStack />
+              <p className="font-semibold">Your Library</p>
+            </div>
+            <div className="flex items-center gap-3">
+              <FaArrowRight />
+              <FaPlus />
+            </div>
+          </div>
+          <div className="p-4 bg-[#242424] m-2 rounded font-semibold flex flex-col items-start justify-start gap-1 pl-4">
+            <h1 className="font-bold">
+              Every &apos;like&apos; is a memory, enjoy them all
+            </h1>
+            <p className="font-light">Cherish your favorites</p>
+            <Link to="/fav">
+              <button className="px-4 py-1.5 bg-white text-[15px] text-black rounded-full mt-4">
+                Fav Tunes
+              </button>
+            </Link>
+          </div>
+          <div className="p-4 bg-[#242424] m-2 rounded font-semibold flex flex-col items-start justify-start gap-1 pl-4">
+            <h1 className="font-bold">Explore Fresh Voices in Podcasting!</h1>
+            <p className="font-light">Stay Tuned for the Latest Episodes!</p>
+
+            <Link to="listenshows">
+              <button className="px-4 py-1.5 bg-white text-[15px] text-black rounded-full mt-4">
+                Listen Shows
+              </button>
+            </Link>
+          </div>
+        </div>
       </div>
     </>
   );

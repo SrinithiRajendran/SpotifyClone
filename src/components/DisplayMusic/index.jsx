@@ -9,13 +9,13 @@ import ExplorePremium from "../ExplorePremium";
 import Throwback from "../Throwback";
 import Artists from "../Artists";
 import ListenShows from "../ListenShows";
+import MyFavourites from "../MyFavourites";
+import Sidebar from "../Sidebar";
 
 const DisplayMusic = () => {
   const displayRef = useRef();
   const location = useLocation();
-  const isAlbum =
-    location.pathname.includes("album") ||
-    location.pathname.includes("throwback");
+  const isAlbum = location.pathname.includes("album");
   const albumId = isAlbum ? location.pathname.slice(-1) : "";
   const bgColor = albumsData[Number(albumId)].bgColor;
 
@@ -29,7 +29,7 @@ const DisplayMusic = () => {
 
   return (
     <div
-      className="text-white overflow-auto w-[100%] m-2 px-2 md:px-6 pt-2 md:pt-4 lg:w-[75%] lg:ml-0 rounded bg-[#121212]"
+      className="text-[white] overflow-auto w-[100%] m-2 px-2 md:px-6 pt-2 md:pt-4 lg:w-[75%] lg:ml-0 rounded bg-[#121212]"
       ref={displayRef}
     >
       <Routes>
@@ -39,6 +39,8 @@ const DisplayMusic = () => {
         <Route path="/throwback/:id" element={<Throwback />} />
         <Route path="/artists/:id" element={<Artists />} />
         <Route path="/listenshows" element={<ListenShows />} />
+        <Route path="/fav" element={<MyFavourites />} />
+        <Route path="/sidebar" element={<Sidebar />} />
       </Routes>
     </div>
   );
