@@ -137,7 +137,7 @@ const MusicPlayer = () => {
               }
             >
               <div className="ml-1 text-xs text-[#55ba55] hover:text-[white]">
-                <p>{currentTrack.name}...</p>
+                <p>{currentTrack.name}</p>
                 <p>{currentTrack.desc ? currentTrack.desc.slice(0, 30) : ""}</p>
               </div>
             </div>
