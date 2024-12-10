@@ -6,6 +6,7 @@ import { FcLike } from "react-icons/fc";
 import { useParams } from "react-router-dom";
 import { artistsData, assets } from "../../assets/assets";
 import { PlayerContext } from "../../context/PlayerContext";
+
 const Artists = () => {
   const { id } = useParams();
   const albumId = parseInt(id, 10);
@@ -85,7 +86,7 @@ const Artists = () => {
             <div
               key={song.id}
               className={`grid grid-cols-3 sm:grid-cols-4 gap-2 p-2 items-center text-[#a7a7a7] hover:bg-[#ffffff2b] cursor-pointer pb-5 ${
-                isActive ? "bg-gray-700" : ""
+                isActive ? "bg-[#3d3c3c]" : ""
               }`}
               onClick={(e) => handlePlaySong(e, song.id)} // Pass event object to stop propagation
             >

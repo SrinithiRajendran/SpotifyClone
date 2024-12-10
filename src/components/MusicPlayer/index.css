@@ -1,3 +1,9 @@
-.musicwidth{
-    min-width:300px;
+.musicwidth {
+  min-width: 300px;
+}
+
+@media (max-width: 768px) {
+  .musicwidth {
+    max-width: 200px;
+  }
 }

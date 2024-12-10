@@ -38,19 +38,10 @@ const MusicPlayer = () => {
     audioRef.current.volume = e.target.value;
   };
 
-  // Logic to choose which track to play
-  //const activeTrack = musicTrack || favouriteTrack; // Default to musicTrack, if not set, fallback to favouriteTrack
-
-  /*useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.play();
-    }
-  }, [audioRef, activeTrack]); */ // Re-run whenever activeTrack changes
-
   useEffect(() => {
     const audioElement = audioRef.current;
     const handleEnded = () => {
-      next(); // Move to the next song when the current song ends
+      next();
     };
     if (audioElement) {
       audioElement.addEventListener("ended", handleEnded);
@@ -62,10 +53,9 @@ const MusicPlayer = () => {
     };
   }, [audioRef, next]);
 
-  // Handle the favourite track selection
   const handleFavouriteTrackClick = () => {
     if (favouriteTrack) {
-      playWithFavourites(favouriteTrack.favouriteId); // Play the favourite track
+      playWithFavourites(favouriteTrack.favouriteId);
     }
   };
 
@@ -74,7 +64,7 @@ const MusicPlayer = () => {
   const currentTrack = musicTrack || favouriteTrack;
 
   return (
-    <div className="text-white px-4 h-[15%] bg-black flex items-center justify-between sticky w-[100%] mb-0">
+    <div className="text-white  px-4 pr-2 sm:h-[15%] md:h-[25%] lg:h-[15%] bg-black flex items-center justify-between sticky w-[100%] mb-0">
       {currentTrack && (
         <div
           className="hidden lg:flex gap-4 items-center musicwidth"
@@ -88,34 +78,73 @@ const MusicPlayer = () => {
             alt={currentTrack?.name}
           />
           {!currentTrack?.image && (
-            <div className="flex items-center">
+            <div className="flex items-center ">
               <FaSpotify className="mr-2" /> SPOTIFY
             </div>
           )}
-          <div>
+          <div className="  text-[#74e474]  hover:text-[white]">
             <p>{currentTrack.name}</p>
             <p>{currentTrack.desc ? currentTrack.desc.slice(0, 30) : ""}</p>
           </div>
         </div>
       )}
 
-      <div className="flex flex-col items-center m-auto gap-1">
-        <div className="flex gap-4 text-2xl cursor-pointer">
+      <div className="flex flex-col items-center justify-center mx-auto mt-10 md:mt-0 gap-1 ">
+        <div className="flex gap-4 text-xl md:text-2xl cursor-pointer items-center ">
+          {currentTrack && (
+            <div
+              className="flex lg:hidden items-center"
+              onClick={
+                currentTrack === favouriteTrack
+                  ? handleFavouriteTrackClick
+                  : null
+              }
+            >
+              <img
+                className="w-8 sm:w-12 mr-1 rounded-md"
+                src={currentTrack?.image}
+                alt={currentTrack?.name}
+              />
+              {!currentTrack?.image && (
+                <div className="flex items-center text-xl text-[#3c863c]">
+                  <FaSpotify />
+                </div>
+              )}
+            </div>
+          )}
+
           <PiShuffleBold className="" />
           <FaBackwardStep onClick={previous} />
           {playStatus ? (
-            <FaCirclePause onClick={pause} />
+            <FaCirclePause onClick={pause} className="hover:text-[#4fb34f]" />
           ) : (
-            <FaCirclePlay onClick={play} />
+            <FaCirclePlay onClick={play} className="hover:text-[#479b47]" />
           )}
           <FaForwardStep onClick={next} />
           <SlLoop
             onClick={toggleLoop}
+            className=""
             style={{ color: isLooping ? "green" : "white" }}
           />
+
+          {currentTrack && (
+            <div
+              className="flex lg:hidden items-center "
+              onClick={
+                currentTrack === favouriteTrack
+                  ? handleFavouriteTrackClick
+                  : null
+              }
+            >
+              <div className="ml-1 text-xs text-[#55ba55] hover:text-[white]">
+                <p>{currentTrack.name}...</p>
+                <p>{currentTrack.desc ? currentTrack.desc.slice(0, 30) : ""}</p>
+              </div>
+            </div>
+          )}
         </div>
 
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-5 mt-1 sm:mt-0 text-xs sm:text-lg ">
           <p>
             {(playTime.currentTime.minute < 10 ? "0" : "") +
               playTime.currentTime.minute}

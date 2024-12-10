@@ -89,7 +89,10 @@ const DisplayNav = ({ onTabChange }) => {
           </p>
         </div>
 
-        <button onClick={toggleMenu}>
+        <button
+          onClick={toggleMenu}
+          className="text-[white] hover:text-[#52cd4e]"
+        >
           {isMenuOpen ? (
             <IoClose className=" flex lg:hidden text-3xl md:text-4xl" />
           ) : (
@@ -99,7 +102,7 @@ const DisplayNav = ({ onTabChange }) => {
       </div>
 
       <div
-        className={`w-[100%] p-2 flex-col gap-2 text-white flex lg:hidden ${
+        className={`w-[100%] p-2 flex-col gap-2 text-[white] flex lg:hidden ${
           isMenuOpen ? "block" : "hidden"
         } lg:flex`} // The content is visible when isMenuOpen is true
       >
