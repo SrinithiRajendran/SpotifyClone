@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useContext, useEffect } from "react";
-import DisplayNav from "../DisplayNav";
+import { MdNavigateBefore } from "react-icons/md";
+import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { albumsData, assets } from "../../assets/assets";
 import { PlayerContext } from "../../context/PlayerContext";
@@ -42,7 +43,9 @@ const AlbumsList = () => {
 
   return (
     <>
-      <DisplayNav />
+      <Link to="/">
+        <MdNavigateBefore className="text-xl lg:text-2xl" />
+      </Link>
       <div className="flex flex-col md:flex-row md:items-end gap-8 mt-10">
         <img src={albumData.image} alt="album cover" className="w-48 rounded" />
         <div className="flex flex-col">

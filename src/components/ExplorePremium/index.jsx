@@ -1,12 +1,15 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
 import { BsSpotify } from "react-icons/bs";
-import DisplayNav from "../DisplayNav";
-
+import { FaRegArrowAltCircleLeft } from "react-icons/fa";
+import { Link } from "react-router-dom";
 const ExplorePremium = () => {
   return (
     <>
-      <DisplayNav />
+      <Link to="/">
+        <FaRegArrowAltCircleLeft className="text-xl lg:text-2xl" />
+      </Link>
+
       <div className="text-white p-8 mt-10 rounded-lg bg-gradient-to-r from-pink-900 to-blue-900">
         <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
           Listen without limits. Try 2 months of Premium for ₹119.

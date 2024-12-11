@@ -24,17 +24,39 @@ const DisplayNav = ({ onTabChange }) => {
   const toggleMenu = () => {
     setIsMenuOpen((prevState) => !prevState);
   };
+
+  const [hasNavigatedBack, setHasNavigatedBack] = useState(false);
+  const [hasNavigatedNext, setHasNavigatedNext] = useState(false);
+
+  const handleNavigateBack = () => {
+    if (!hasNavigatedBack) {
+      navigate(-1);
+      setHasNavigatedBack(true);
+    }
+  };
+
+  const handleNavigateNext = () => {
+    if (!hasNavigatedNext) {
+      navigate(1);
+      setHasNavigatedNext(true);
+    }
+  };
+
   return (
     <>
       <div className="flex justify-between items-center w-full font-semibold">
         <div className="flex items-center gap-2">
           <MdNavigateBefore
-            className="rounded-full bg-black text-2xl md:text-3xl p-1 cursor-pointer"
-            onClick={() => navigate(-1)}
+            className={`rounded-full bg-black text-2xl md:text-3xl p-1 cursor-pointer ${
+              hasNavigatedBack ? "opacity-50 cursor-not-allowed" : ""
+            }`}
+            onClick={handleNavigateBack}
           />
           <MdNavigateNext
-            className="bg-black text-2xl md:text-3xl p-1 rounded-full cursor-pointer"
-            onClick={() => navigate(1)}
+            className={`bg-black text-2xl md:text-3xl p-1 rounded-full cursor-pointer ${
+              hasNavigatedNext ? "opacity-50 cursor-not-allowed" : ""
+            }`}
+            onClick={handleNavigateNext}
           />
         </div>
         <div className="hide-nav items-center gap-2 sm:gap-3 md:gap-4">
@@ -91,7 +113,7 @@ const DisplayNav = ({ onTabChange }) => {
 
         <button
           onClick={toggleMenu}
-          className="text-[white] hover:text-[#52cd4e]"
+          className="text-[white] hover:text-[#286026]"
         >
           {isMenuOpen ? (
             <IoClose className=" flex lg:hidden text-3xl md:text-4xl" />

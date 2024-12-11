@@ -1,8 +1,10 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useContext, useEffect } from "react";
-import DisplayNav from "../DisplayNav";
+import { useState } from "react";
 import { PlayerContext } from "../../context/PlayerContext";
 import { FcDislike } from "react-icons/fc";
+import { useNavigate, Link } from "react-router-dom";
+import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 
 const MyFavourites = () => {
   const {
@@ -19,10 +21,31 @@ const MyFavourites = () => {
       toggleFavouritesMode(false);
     };
   }, [toggleFavouritesMode]);
+  const navigate = useNavigate();
 
+  const [hasNavigatedNext, setHasNavigatedNext] = useState(false);
+
+  const handleNavigateNext = () => {
+    if (!hasNavigatedNext) {
+      navigate(1);
+      setHasNavigatedNext(true);
+    }
+  };
   return (
     <>
-      <DisplayNav />
+      <div className="flex items-center gap-2">
+        <Link to="/">
+          {" "}
+          <MdNavigateBefore className="rounded-full bg-black text-2xl md:text-3xl p-1 cursor-pointer" />
+        </Link>
+
+        <MdNavigateNext
+          className={`bg-black text-2xl md:text-3xl p-1 rounded-full cursor-pointer ${
+            hasNavigatedNext ? "opacity-50 cursor-not-allowed" : ""
+          }`}
+          onClick={handleNavigateNext}
+        />
+      </div>
       <div className="text-white rounded-lg mt-5 mb-10">
         <h2 className="text-1xl md:text-2xl font-bold text-center mb-6">
           My Favourites
